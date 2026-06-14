@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wanita Terbaik</title>
+    <title>✨ Ruang Cinta Kita ✨</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script>
@@ -11,225 +11,206 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#E8B4D3',
-                        secondary: '#C8A2C8',
-                        accent: '#7B6692',
-                        soft: '#FDF8FB',
-                        dark: '#2D233A',
+                        softcyan: '#E0F7FA',
+                        lightcyan: '#B2EBF2',
+                        cyan: '#80DEEA',
+                        deepcyan: '#26A69A',
+                        creamcyan: '#F2FCFD',
                     },
                     fontFamily: {
-                        inter: ['Inter', 'system-ui', 'sans-serif'],
-                    },
+                        sans: ['Inter', 'sans-serif'],
+                        cursive: ['Pacifico', 'cursive']
+                    }
                 }
             }
         }
     </script>
     <style type="text/tailwindcss">
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
         @layer utilities {
-            .bg-modern {
-                background: linear-gradient(135deg, #FDF8FB 0%, #F9EFF5 40%, #F4E7EF 100%);
+            .content-auto {
+                content-visibility: auto;
             }
-            .text-gradient {
-                background: linear-gradient(90deg, #7B6692 0%, #C8A2C8 100%);
-                -webkit-background-clip: text;
-                background-clip: text;
-                color: transparent;
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
             }
-            .glass {
-                background: rgba(255, 255, 255, 0.7);
-                backdrop-filter: blur(12px);
-                border: 1px solid rgba(255, 255, 255, 0.25);
+            .fade-in {
+                animation: fadeIn 0.8s ease-out;
             }
-            .card-modern {
-                transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-            }
-            .card-modern:hover {
-                transform: translateY(-10px) scale(1.02);
-                box-shadow: 0 20px 40px rgba(123, 102, 146, 0.15);
-            }
-            .fade-up {
-                opacity: 0;
-                transform: translateY(30px);
-                animation: fadeUp 0.8s ease-out forwards;
-            }
-            @keyframes fadeUp {
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(10px); }
                 to { opacity: 1; transform: translateY(0); }
             }
-            .delay-1 { animation-delay: 0.2s; }
-            .delay-2 { animation-delay: 0.4s; }
-            .delay-3 { animation-delay: 0.6s; }
-            .img-zoom {
-                overflow: hidden;
+            .heart-beat {
+                animation: heartbeat 1.2s infinite;
             }
-            .img-zoom img {
-                transition: transform 0.6s ease;
-            }
-            .img-zoom:hover img {
-                transform: scale(1.08);
+            @keyframes heartbeat {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.1); }
             }
         }
     </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
-<body class="font-inter bg-modern min-h-screen text-dark">
-    <!-- Navigasi Modern -->
-    <nav class="fixed w-full z-50 glass py-3">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <h1 class="text-xl font-bold text-gradient tracking-tight">WANITA TERBAIK</h1>
-            <div class="hidden md:flex gap-8 text-sm font-medium">
-                <a href="#beranda" class="hover:text-accent transition-colors duration-300">Beranda</a>
-                <a href="#makna" class="hover:text-accent transition-colors duration-300">Makna</a>
-                <a href="#kata" class="hover:text-accent transition-colors duration-300">Kata Hati</a>
+<body class="bg-softcyan min-h-screen font-sans">
+
+    <!-- HALAMAN LOGIN -->
+    <div id="loginPage" class="flex items-center justify-center min-h-screen p-4">
+        <div class="bg-white rounded-3xl shadow-xl p-8 w-full max-w-md fade-in">
+            <div class="text-center mb-8">
+                <i class="fa fa-heart text-cyan text-5xl heart-beat"></i>
+                <h1 class="text-3xl font-cursive text-deepcyan mt-4">Ruang Cinta Kita</h1>
+                <p class="text-gray-500 mt-2">Masuk untuk melihat kenangan kita</p>
             </div>
-            <button class="md:hidden text-2xl text-accent">☰</button>
+            <form onsubmit="login(event)" class="space-y-5">
+                <div>
+                    <label class="block text-gray-700 mb-2">Username</label>
+                    <input type="text" id="username" class="w-full px-4 py-3 rounded-xl border border-cyan/30 focus:outline-none focus:ring-2 focus:ring-cyan/50" placeholder="Masukkan username">
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-2">Password</label>
+                    <input type="password" id="password" class="w-full px-4 py-3 rounded-xl border border-cyan/30 focus:outline-none focus:ring-2 focus:ring-cyan/50" placeholder="Masukkan kata sandi">
+                </div>
+                <button type="submit" class="w-full bg-cyan hover:bg-deepcyan text-white font-medium py-3 rounded-xl transition duration-300 shadow-md">Masuk</button>
+                <p id="errorMsg" class="text-red-500 text-center mt-2 hidden">Username atau kata sandi salah!</p>
+            </form>
         </div>
-    </nav>
+    </div>
 
-    <!-- Bagian Utama -->
-    <section id="beranda" class="pt-36 pb-24 px-6">
-        <div class="container mx-auto max-w-5xl">
-            <div class="text-center fade-up">
-                <h2 class="text-[clamp(2.5rem,6vw,4rem)] font-bold text-gradient leading-tight mb-6">
-                    Lebih Dari Sekadar Kecantikan
-                </h2>
-                <p class="text-lg md:text-xl text-dark/70 max-w-3xl mx-auto leading-relaxed">
-                    Kecantikan yang sejati lahir dari hati yang tulus, akhlak yang mulia, dan senyum yang menyejukkan. Itulah ciri seorang wanita terbaik.
-                </p>
-            </div>
-
-            <div class="mt-16 img-zoom rounded-3xl overflow-hidden shadow-xl fade-up delay-1">
-                <img 
-                    src="https://files.catbox.moe/qxrm47.jpg" 
-                    alt="Wanita dengan aura tenang dan anggun" 
-                    class="w-full h-[450px] md:h-[550px] object-cover"
-                >
-            </div>
-
-            <div class="mt-12 glass rounded-3xl p-8 md:p-10 max-w-3xl mx-auto text-center fade-up delay-2">
-                <p class="text-xl md:text-2xl italic font-light text-accent">
-                    "Dia yang membuat dunia terasa lebih indah, hanya dengan menjadi dirinya sendiri."
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Bagian Makna Keindahan -->
-    <section id="makna" class="py-20 bg-white/30">
-        <div class="container mx-auto px-6">
-            <h3 class="text-3xl md:text-4xl font-bold text-center text-gradient mb-16 fade-up">
-                Keindahan yang Abadi
-            </h3>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-                <!-- Kartu 1 -->
-                <div class="glass rounded-3xl overflow-hidden card-modern fade-up delay-1">
-                    <div class="img-zoom h-72">
-                        <img 
-                            src="https://files.catbox.moe/kw0a4i.jpg" 
-                            alt="Ketulusan hati" 
-                            class="w-full h-full object-cover"
-                        >
-                    </div>
-                    <div class="p-7">
-                        <h4 class="text-xl font-semibold text-accent mb-3">Ketulusan Hati</h4>
-                        <p class="text-dark/70 leading-relaxed">
-                            Hatinya bersih, niatnya tulus, dan senyumnya tulus memberi ketenangan bagi siapa saja yang ada di dekatnya.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Kartu 2 -->
-                <div class="glass rounded-3xl overflow-hidden card-modern fade-up delay-2">
-                    <div class="img-zoom h-72">
-                        <img 
-                            src="https://files.catbox.moe/b0mx1w.jpg" 
-                            alt="Kekuatan dan kelembutan" 
-                            class="w-full h-full object-cover"
-                        >
-                    </div>
-                    <div class="p-7">
-                        <h4 class="text-xl font-semibold text-accent mb-3">Kekuatan Lembut</h4>
-                        <p class="text-dark/70 leading-relaxed">
-                            Kuat saat menghadapi tantangan, namun tetap lembut dalam bersikap. Itu perpaduan langka yang membuatnya istimewa.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Kartu 3 -->
-                <div class="glass rounded-3xl overflow-hidden card-modern fade-up delay-3">
-                    <div class="img-zoom h-72">
-                        <img 
-                            src="https://files.catbox.moe/cufszd.jpg" 
-                            alt="Cahaya harapan" 
-                            class="w-full h-full object-cover"
-                        >
-                    </div>
-                    <div class="p-7">
-                        <h4 class="text-xl font-semibold text-accent mb-3">Cahaya Kehidupan</h4>
-                        <p class="text-dark/70 leading-relaxed">
-                            Kehadirannya bagai cahaya di kegelapan, memberi harapan dan mengingatkan bahwa kebaikan selalu ada.
-                        </p>
-                    </div>
+    <!-- HALAMAN UTAMA -->
+    <div id="mainPage" class="hidden">
+        <!-- Navigasi -->
+        <nav class="bg-white shadow-md sticky top-0 z-50">
+            <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+                <h2 class="text-xl font-cursive text-deepcyan">🤍 Our Love</h2>
+                <div class="flex gap-3">
+                    <button onclick="showPage('halaman1')" class="px-3 py-1.5 rounded-lg text-sm font-medium bg-cyan/10 text-deepcyan hover:bg-cyan/20 transition">Beranda</button>
+                    <button onclick="showPage('halaman2')" class="px-3 py-1.5 rounded-lg text-sm font-medium bg-cyan/10 text-deepcyan hover:bg-cyan/20 transition">Biodata</button>
+                    <button onclick="showPage('halaman3')" class="px-3 py-1.5 rounded-lg text-sm font-medium bg-cyan/10 text-deepcyan hover:bg-cyan/20 transition">Kenangan</button>
                 </div>
             </div>
-        </div>
-    </section>
+        </nav>
 
-    <!-- Bagian Kata-kata -->
-    <section id="kata" class="py-24 px-6">
-        <div class="container mx-auto max-w-5xl">
-            <h3 class="text-3xl md:text-4xl font-bold text-center text-gradient mb-16 fade-up">
-                Kata untuk Wanita Terbaik
-            </h3>
+        <div class="container mx-auto px-4 py-8">
 
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="glass rounded-3xl p-8 relative overflow-hidden card-modern fade-up delay-1">
-                    <i class="fa fa-heart text-6xl text-primary/15 absolute -right-6 -top-6"></i>
-                    <p class="text-lg md:text-xl italic text-dark/80 relative z-10 leading-relaxed">
-                        "Di tengah dunia yang berubah, kamu tetap menjadi alasan sederhana yang membuat hari terasa lebih indah dan berarti."
-                    </p>
-                </div>
-
-                <div class="glass rounded-3xl p-8 relative overflow-hidden card-modern fade-up delay-2">
-                    <i class="fa fa-star text-6xl text-secondary/15 absolute -right-6 -top-6"></i>
-                    <p class="text-lg md:text-xl italic text-dark/80 relative z-10 leading-relaxed">
-                        "Aku tidak mencari kesempurnaan, tapi aku menemukan dirimu yang membuat segala hal terasa sempurna dengan caramu yang unik."
-                    </p>
-                </div>
-
-                <div class="glass rounded-3xl p-8 relative overflow-hidden card-modern fade-up delay-3">
-                    <i class="fa fa-flower text-6xl text-accent/15 absolute -right-6 -top-6"></i>
-                    <p class="text-lg md:text-xl italic text-dark/80 relative z-10 leading-relaxed">
-                        "Bunga indah tapi layu, cahaya terang tapi bisa redup. Namun keindahan hatimu tetap bersinar, tak lekang oleh waktu."
-                    </p>
-                </div>
-
-                <div class="glass rounded-3xl p-8 relative overflow-hidden card-modern fade-up delay-3">
-                    <i class="fa fa-infinity text-6xl text-primary/15 absolute -right-6 -top-6"></i>
-                    <p class="text-lg md:text-xl italic text-dark/80 relative z-10 leading-relaxed">
-                        "Terima kasih telah menjadi sosok yang menginspirasi, menguatkan, dan mengajarkan arti kecantikan yang sesungguhnya."
+            <!-- HALAMAN 1: SELAMAT DATANG & KATA ROMANTIS -->
+            <div id="halaman1" class="fade-in">
+                <div class="bg-white rounded-3xl shadow-lg p-8 text-center">
+                    <h1 class="text-4xl font-cursive text-deepcyan mb-6 text-shadow">Haloooo Dedeeee Kuuu 🤍</h1>
+                    <div class="mb-6">
+                        <!-- Ganti URL gambar dengan foto kalian -->
+                        <img src="https://files.catbox.moe/kw0a4i.jpg" alt="dedeeeee lucuuuuu 😙🤍" class="mx-auto rounded-2xl shadow-md max-h-80 w-full object-cover">
+                    </div>
+                    <p class="text-gray-700 text-lg leading-relaxed max-w-2xl mx-auto">
+                        Terima kasih sudah hadir dan melengkapi setiap hari dalam hidupku. Bersamamu, setiap detik terasa lebih indah, lebih berwarna, dan lebih bermakna. Kamu adalah alasan aku tersenyum, semangatku berjuang, dan rumah tempat hatiku pulang. Aku mencintaimu, hari ini, esok, dan selamanya.
                     </p>
                 </div>
             </div>
 
-            <div class="mt-16 glass rounded-3xl p-10 text-center fade-up delay-3">
-                <p class="text-2xl md:text-3xl font-medium text-gradient italic">
-                    "Wanita terbaik adalah dia yang cantik dari luar, namun jauh lebih indah dari dalam."
-                </p>
-                <div class="mt-6 text-accent">
-                    <i class="fa fa-heart text-3xl"></i>
+            <!-- HALAMAN 2: BIODATA -->
+            <div id="halaman2" class="hidden fade-in">
+                <h2 class="text-3xl font-cursive text-center text-deepcyan mb-8">Tentang Kita 💑</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Biodata Pasangan 1 -->
+                    <div class="bg-white rounded-3xl shadow-lg p-6 text-center">
+                        <img src="https://files.catbox.moe/solrc7.jpg" alt="dedeeee cantiiii 😙🤍" class="w-40 h-40 rounded-full mx-auto object-cover border-4 border-cyan/30 shadow-md">
+                        <h3 class="text-2xl font-semibold text-deepcyan mt-4">Putri Alya Nurfadhilah</h3>
+                        <div class="text-left mt-5 space-y-2 text-gray-700">
+                            <p><strong>Tanggal Lahir :</strong> 28 Maret 2012</p>
+                            <p><strong>Hobi:</strong> Main Hp, Jajan, Jalan - Jalan</p>
+                            <p><strong>Makanan Favorit :</strong> Seblak, Martabak, Cokelat</p>
+                            <p><strong>Minuman Favorit :</strong> Matcha</p>
+                            <p><strong>Tujuan Bersama :</strong> Bersama Pasangan Tercinta 🙆🏼‍♀️🤍<p><strong>
+                        </div>
+                    </div>
+                    <!-- Biodata Pasangan 2 -->
+                    <div class="bg-white rounded-3xl shadow-lg p-6 text-center">
+                        <img src="https://files.catbox.moe/kjf76h.jpg" alt="Dudunnnn Chindoooo 🙆‍♂️🤍" class="w-40 h-40 rounded-full mx-auto object-cover border-4 border-cyan/30 shadow-md">
+                        <h3 class="text-2xl font-semibold text-deepcyan mt-4">Abdul Muhaemin Arridwan</h3>
+                        <div class="text-left mt-5 space-y-2 text-gray-700">
+                            <p><strong>Tanggal Lahir :</strong> 15 Desember 2011</p>
+                            <p><strong>Hobi :</strong> Membaca, Menggambar, Main Hp</p>
+                            <p><strong>Makanan Favorit :</strong> Martabak</p>
+                            <p><strong>Minuman Favorit :</strong> Matcha, Cokelat</p>
+                            <p><strong>Tujuan Bersama :</strong> Menua Bersama Orang Tersayang 🙆‍♂️🤍<p><strong>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="bg-accent/5 py-10 border-t border-primary/20">
-        <div class="container mx-auto px-6 text-center">
-            <p class="text-dark/70 font-medium">© 2026 - Penghargaan untuk hati yang indah</p>
-            <p class="text-sm text-dark/50 mt-2">Dibuat dengan <i class="fa fa-heart text-primary"></i> dan kekaguman</p>
+            <!-- HALAMAN 3: KATA ROMANTIS, FOTO & EASTER EGG -->
+            <div id="halaman3" class="hidden fade-in">
+                <h2 class="text-3xl font-cursive text-center text-deepcyan mb-8">Kenangan & Cinta Kita 📸</h2>
+                <div class="bg-white rounded-3xl shadow-lg p-8 mb-8">
+                    <p class="text-gray-700 text-lg leading-relaxed text-center mb-6">
+                        Setiap foto menyimpan cerita, setiap momen menyimpan rasa. Aku bersyukur bisa melangkah bersama menuju masa depan yang penuh harapan. Kamu adalah takdir terbaik yang Tuhan kirimkan untukku. 🤍
+                    </p>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <!-- Ganti URL gambar dengan foto kalian -->
+                        <img src="https://files.catbox.moe/w7qagc.jpg" alt="Dudunnnn dannn Ayuuuuuuttttt 🤍" class="rounded-xl shadow-sm hover:scale-105 transition-transform duration-300 cursor-pointer">
+                        <img src="https://files.catbox.moe/0s8ws9.jpg" alt="Dudunnnn dannn Ayuuuuuuttttt 🤍" class="rounded-xl shadow-sm hover:scale-105 transition-transform duration-300 cursor-pointer">
+                        <img src="https://files.catbox.moe/59fhbj.jpg" alt="Dudunnnn dannn Ayuuuuuuttttt 🤍" class="rounded-xl shadow-sm hover:scale-105 transition-transform duration-300 cursor-pointer">
+                        <img src="https://files.catbox.moe/r1a13p.jpeg" alt="Dudunnnn dannn Ayuuuuuuttttt 🤍" class="rounded-xl shadow-sm hover:scale-105 transition-transform duration-300 cursor-pointer">
+                        <img src="https://files.catbox.moe/c6qrkc.jpg" alt="Dudunnnn dannn Ayuuuuuuttttt 🤍" class="rounded-xl shadow-sm hover:scale-105 transition-transform duration-300 cursor-pointer">
+                        <img src="https://files.catbox.moe/96nikf.jpg" alt="Dudunnnn dannn Ayuuuuuuttttt 🤍" class="rounded-xl shadow-sm hover:scale-105 transition-transform duration-300 cursor-pointer">
+                    </div>
+                </div>
+
+                <!-- EASTER EGG -->
+                <div class="text-center">
+                    <button onclick="showSurprise()" class="bg-cyan hover:bg-deepcyan text-white px-6 py-3 rounded-full text-lg shadow-lg hover:shadow-xl transition-all duration-300 heart-beat">
+                        <i class="fa fa-heart mr-2"></i> Click For More 🤍
+                    </button>
+                </div>
+
+                <div id="surpriseBox" class="hidden mt-8 bg-creamcyan border-2 border-cyan/40 rounded-3xl p-8 text-center fade-in">
+                    <h3 class="text-2xl font-cursive text-deepcyan mb-4">Rahasia Hatiku Untukmu 💌</h3>
+                    <img src="https://files.catbox.moe/to6sni.jpg" alt="Bungaaaa Dariii Dudunnnn 🌹🤍" class="mx-auto rounded-xl shadow-md mb-6 max-h-64 w-full object-cover">
+                    <p class="text-gray-700 text-lg italic max-w-xl mx-auto">
+                        "Dengan Setangkai Bunga Itu, Itu Adalah Sebagai Bukti Bahwa Hatiku Memang Tidak Main Main Denganmu, Karena Pribadi Ku Sendiri Tidak Akan Pernah Berani Memberikan Barang Tersebut Jika Diriku Sebelum Mencintai Sehidup Semati Dengan Seseorang. Dan Beruntungnya Diriku Bisa Bertemu Dengan Dirimu Disini Dan Di Waktu ini. Hadirmu Sangatlah Berpengaruh Terhadap Hidupku, Hadirmu, Membuatku Merasa Nyaman, Membuatku Merasa Berbunga - Bunga Setiap Melihat Dirimu. Dan Satu Pesan Untukmu Wahai Gadisku Yang Tercinta... --- Diriku Berharap Lebih Padamu Kali Ini, Jangan Membuatku Merasa Kecewa Dengan Satu Kesalahan Besar Dari Dirimu. 🙆‍♂️🤍"
+                    </p>
+                </div>
+            </div>
+
         </div>
-    </footer>
+    </div>
+
+    <script>
+        // Fungsi Login
+        function login(e) {
+            e.preventDefault();
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+            const error = document.getElementById('errorMsg');
+
+            if(user === 'aldul' && pass === '250426') {
+                document.getElementById('loginPage').classList.add('hidden');
+                document.getElementById('mainPage').classList.remove('hidden');
+                showPage('halaman1');
+            } else {
+                error.classList.remove('hidden');
+                setTimeout(() => error.classList.add('hidden'), 2500);
+            }
+        }
+
+        // Fungsi Ganti Halaman
+        function showPage(pageId) {
+            document.querySelectorAll('#mainPage > div > div[id^="halaman"]').forEach(page => {
+                page.classList.add('hidden');
+            });
+            document.getElementById(pageId).classList.remove('hidden');
+        }
+
+        // Fungsi Easter Egg / Kejutan
+        function showSurprise() {
+            const surprise = document.getElementById('surpriseBox');
+            surprise.classList.toggle('hidden');
+            if(!surprise.classList.contains('hidden')) {
+                surprise.scrollIntoView({behavior: 'smooth'});
+            }
+        }
+    </script>
+
 </body>
 </html>
